@@ -71,7 +71,7 @@ if __name__ == '__main__':
     args = get_args()
 
     device = 'cuda'
-    VOC_ROOT = 'D:/Dental_Panorama/RawData/LabelingDatasets'
+    ROOT = 'D:/Dental_Panorama/RawData/LabelingDatasets'
 
     backbone = vovnet57(pretrained=False)
     model = FCOS(args, backbone)
@@ -87,13 +87,13 @@ if __name__ == '__main__':
         optimizer, milestones=[16, 22], gamma=0.1
     )
 
-    dataset = ToothDataset(root_path=VOC_ROOT,
+    dataset = ToothDataset(root_path=ROOT,
                            doctor='Yamamoto',
                            target_transform=VOCAnnotTransFaster(),
                            transform=PreProcess())
 
     train_loader = DataLoader(dataset,
-                              3,
+                              args.batch,
                               num_workers=0,
                               shuffle=True,
                               collate_fn=detection_collate,

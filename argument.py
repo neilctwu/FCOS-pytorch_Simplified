@@ -6,7 +6,7 @@ class TEST:
         self.local_rank = 0
         self.lr = 0.0001
         self.l2 = 0.00001
-        self.batch = 1
+        self.batch = 3
         self.epoch = 400000
         self.n_save_sample = 5
         self.ckpt = ''
