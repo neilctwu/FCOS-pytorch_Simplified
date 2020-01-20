@@ -11,5 +11,5 @@ https://github.com/rosinality/fcos-pytorch
 - Removing parallel computing functions
 ---
 ### TO-DO:  
-- Add modified evalutes funtions for in-house data  
-- Add image outputs for visualizations
+- Add modified **evalute funtion** for in-house data  
+- Add **image output function** for visualizations
