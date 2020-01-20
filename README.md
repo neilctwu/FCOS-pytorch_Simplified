@@ -7,7 +7,7 @@ https://github.com/rosinality/fcos-pytorch
 
 ##### What's different?
 - Simplified as I can to increase legibility  
-- Implementing in-house data loader instead of COCO dataset.
+- Implementing in-house (tooth detection) data loader instead of COCO dataset.
 - Removing parallel computing functions
 ---
 ### Backbone

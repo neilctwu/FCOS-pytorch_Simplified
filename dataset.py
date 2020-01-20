@@ -1,4 +1,3 @@
-
 import os.path as osp
 import torch.utils.data as data
 import cv2
@@ -39,9 +38,6 @@ class VOCAnnotTransFaster(object):
                 cur_pt = int(bbox.find(pt).text) - 1
                 # scale height or width
                 bndbox.append(cur_pt)
-            # for xywh
-            # bndbox[2] = bndbox[2] - bndbox[0]
-            # bndbox[3] = bndbox[3] - bndbox[1]
             label_idx = self.class_to_ind[name]
             labels.append(label_idx)
             res += [bndbox]  # [xmin, ymin, xmax, ymax, label_ind]
@@ -50,8 +46,7 @@ class VOCAnnotTransFaster(object):
         classes = torch.tensor(labels)
         target.fields['labels'] = classes
 
-        # 1画像に複数物体あるので、[物体数,[bndbox]]のリストを作成する
-        return target  # [[xmin, ymin, xmax, ymax, label_ind], ... ]
+        return target
 
 
 class ToothDataset(data.Dataset):
@@ -92,9 +87,7 @@ class ToothDataset(data.Dataset):
         if self.transform is not None:
             img, boxes = self.transform(img, target.box)
             target.box = boxes
-        # 画像の次元の順番をHWCからCHWに変更
         return torch.from_numpy(img).permute(2, 0, 1), target, img_id, (height, width)
-        # return torch.from_numpy(img), target, height, width
 
 
 def detection_collate(batch):
